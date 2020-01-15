@@ -28,3 +28,23 @@ function modifySheet(sheet) {
     var columnSpec = sheet.getRange("B1:B");
     sheet.moveColumns(columnSpec, 4); 
 }
+function deleteRows(sheet){
+   
+    var RANGE = sheet.getDataRange();
+    var DELETE_VAL = ['Project Management','PM Activities','CH Internal-Angela Harper'];
+    
+     // The column to search for the DELETE_VAL (Zero is first)
+    var COL_TO_SEARCH = 0;
+    var rangeVals = RANGE.getValues();
+    var newRangeVals = [];
+    
+    Logger.log(rangeVals[1][0]);
+    for(var i = 0; i < DELETE_VAL.length; i++){
+      for(var n = rangeVals.length-1 ; n >=0  ; n--){
+          if(rangeVals[n][COL_TO_SEARCH].toLowerCase() === DELETE_VAL[i].toLowerCase()){   
+            sheet.deleteRow(n+1);
+          };
+      } 
+    };
+ 
+}
